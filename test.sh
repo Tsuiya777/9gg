@@ -4,8 +4,9 @@ try() {
   input="$2"
 
   # ./9cc -> ./9gg と変更
-  ./9gg "$input" > tmp.s
-  gcc -o tmp tmp.s
+  ./9gg "$input" > tmp.asm
+  as -o tmp.o tmp.asm
+  gcc -o tmp tmp.o
   ./tmp
   actual="$?"
 
